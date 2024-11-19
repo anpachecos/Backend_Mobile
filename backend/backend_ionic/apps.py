@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class IonicConfig(AppConfig):
+class BackendIonicConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'ionic'
+    name = 'backend_ionic'
