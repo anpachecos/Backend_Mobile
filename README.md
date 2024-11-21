@@ -1,6 +1,6 @@
 # Sistema de Gestión de Usuarios y Asistencias
 
-Este proyecto es un backend desarrollado con Django que gestiona usuarios, asignaturas, horarios y registros de asistencia para un sistema académico.
+Este proyecto es un backend desarrollado con Django que gestiona usuarios, asignaturas, horarios y registros de asistencia para mi app "Mis Asistencias Duoc" -> https://github.com/anpachecos/Mi-Asistencia-Duoc
 
 ---
 
@@ -19,32 +19,6 @@ Este proyecto es un backend desarrollado con Django que gestiona usuarios, asign
 
 4. **Asistencias**:
    - Registro de asistencias de los estudiantes basado en un código QR que contiene información de la clase (asignatura, sección, sala, y fecha).
-
----
-
-## Modelos
-
-### Usuarios
-Define los atributos básicos de un usuario:
-- `nombre`
-- `apellido`
-- `email`
-- `contrasena`
-
-### Asignaturas
-Incluye información sobre las materias:
-- `nombre`
-- `seccion`
-- `sala`
-- `dias_clase`
-- `hora_inicio`
-- `hora_fin`
-
-### Asistencias
-Registra la asistencia de los estudiantes:
-- `usuario` (relación con el modelo de usuarios)
-- `asignatura` (relación con el modelo de asignaturas)
-- `fecha`
 
 ---
 
