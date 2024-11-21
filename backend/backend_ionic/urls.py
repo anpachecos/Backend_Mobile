@@ -3,6 +3,7 @@ from .views import (
     UsuarioListCreate, AsignaturaListCreate, HorarioAsignaturaListCreate,
     AsistenciaListCreate, get_user_by_name
 )
+from .views import update_usuario, update_password
 
 urlpatterns = [
     path('usuarios/', UsuarioListCreate.as_view(), name='usuario-list-create'),
@@ -10,4 +11,8 @@ urlpatterns = [
     path('asignaturas/', AsignaturaListCreate.as_view(), name='asignatura-list-create'),
     path('horarios/', HorarioAsignaturaListCreate.as_view(), name='horario-list-create'),
     path('asistencias/', AsistenciaListCreate.as_view(), name='asistencia-list-create'),
+    path('usuarios/<int:pk>/', update_usuario, name='update_usuario'),
+    path('usuarios/update-password/', update_password, name='update-password'),
+
+
 ]
