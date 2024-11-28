@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import (
     UsuarioListCreate, AsignaturaListCreate, HorarioAsignaturaListCreate,
-    AsistenciaListCreate, get_user_by_name
+    AsistenciaListCreate, get_user_by_name, add_asistencia
 )
 from .views import update_usuario, update_password
 
@@ -13,6 +13,5 @@ urlpatterns = [
     path('asistencias/', AsistenciaListCreate.as_view(), name='asistencia-list-create'),
     path('usuarios/<int:pk>/', update_usuario, name='update_usuario'),
     path('usuarios/update-password/', update_password, name='update-password'),
-
-
+    path('asistencias/', add_asistencia, name='add-asistencia'),
 ]

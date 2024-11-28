@@ -41,7 +41,9 @@ class HorarioAsignatura(models.Model):
 
 class Asistencia(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    asignatura = models.ForeignKey(Asignatura, on_delete=models.CASCADE)
+    nombre = models.CharField(max_length=100, default="Nombre por defecto")  # Agrega un valor predeterminado
+    seccion = models.CharField(max_length=5)
+    sala = models.CharField(max_length=10)
     fecha = models.DateField()  # Fecha específica de la clase
     estado = models.CharField(
         max_length=10,
@@ -52,4 +54,5 @@ class Asistencia(models.Model):
     )
 
     def __str__(self):
-        return f"{self.usuario.nombre} - {self.asignatura.nombre} - {self.estado} - {self.fecha}"
+        return f"{self.usuario.nombre} - {self.nombre} - {self.estado} - {self.fecha}"
+    
