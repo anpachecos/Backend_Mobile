@@ -88,7 +88,17 @@ def add_asistencia(request):
         )
 
 
-
+@api_view(['GET'])
+def get_asistencias_usuario(request, usuario_id):
+    """
+    Endpoint para obtener asistencias de un usuario.
+    """
+    try:
+        asistencias = Asistencia.objects.filter(usuario_id=usuario_id)
+        serializer = AsistenciaSerializer(asistencias, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Asistencia.DoesNotExist:
+        return Response({"error": "No se encontraron asistencias para este usuario."}, status=status.HTTP_404_NOT_FOUND)
 
 
 
