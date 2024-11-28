@@ -49,7 +49,56 @@ def update_password(request):
         return Response({'error': 'Usuario no encontrado'}, status=status.HTTP_404_NOT_FOUND)
 
 
+@api_view(['POST'])
+def add_asistencia(request):
+    """
+    Endpoint para registrar una asistencia
+    """
+    usuario_id = request.data.get('usuario')
+    nombre = request.data.get('nombre')
+    seccion = request.data.get('seccion')
+    sala = request.data.get('sala')
+    fecha = request.data.get('fecha')
+    estado = request.data.get('estado')
 
+    if not (usuario_id and nombre and seccion and sala and fecha and estado):
+        return Response(
+            {'error': 'Faltan datos obligatorios.'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    try:
+        usuario = Usuario.objects.get(id=usuario_id)
+        asistencia = Asistencia.objects.create(
+            usuario=usuario,
+            nombre=nombre,
+            seccion=seccion,
+            sala=sala,
+            fecha=fecha,
+            estado=estado
+        )
+        return Response(
+            {'message': 'Asistencia registrada correctamente.'},
+            status=status.HTTP_201_CREATED
+        )
+    except Usuario.DoesNotExist:
+        return Response(
+            {'error': 'Usuario no encontrado.'},
+            status=status.HTTP_404_NOT_FOUND
+        )
+
+
+@api_view(['GET'])
+def get_asistencias_usuario(request, usuario_id):
+    """
+    Endpoint para obtener asistencias de un usuario.
+    """
+    try:
+        asistencias = Asistencia.objects.filter(usuario_id=usuario_id)
+        serializer = AsistenciaSerializer(asistencias, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Asistencia.DoesNotExist:
+        return Response({"error": "No se encontraron asistencias para este usuario."}, status=status.HTTP_404_NOT_FOUND)
 
 
 
